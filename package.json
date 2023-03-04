@@ -1,0 +1,27 @@
+{
+  "name": "puppeteer-api-vercel",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/baiyusoup/puppeteer-api-vercel.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/baiyusoup/puppeteer-api-vercel/issues"
+  },
+  "homepage": "https://github.com/baiyusoup/puppeteer-api-vercel#readme",
+  "dependencies": {
+    "chrome-aws-lambda": "10.1.0",
+    "puppeteer-core": "10.1.0"
+  },
+  "engines": {
+    "node": "^14"
+  }
+}
