@@ -1,5 +1,5 @@
-const chrome = require('chrome-aws-lambda');
-const puppeteer = require('puppeteer-core');
+const setup = require('../browser');
+
 const disabledResourceType = [
   ["stylesheet", true],
   ["image",true],
@@ -12,12 +12,8 @@ const disabledMap = new Map(disabledResourceType);
 module.exports = async function handler(req, res) {
   const url = req.query.t;
   const wait = req.query.wait;
-  const options = {
-    args: chrome.args,
-    executablePath: await chrome.executablePath,
-    headless: chrome.headless,
-  }
-  let browser = await puppeteer.launch(options);
+  const browser = await setup();
+  console.log("testID=>", browser.__test_id__);
   const page = await browser.newPage();
   await page.setRequestInterception(true);
   page.on('request', (request) => {
@@ -32,8 +28,10 @@ module.exports = async function handler(req, res) {
   if (wait) {
     await page.waitForSelector(wait, { visible: true });
   }
-  const html = await page.evaluate(() => document.body.innerHTML);
+  const html = await page.evaluate(() => {
+    const target = document.body.querySelector(wait) || {};
+    return target.innerHTML;
+  });
   page.close();
-  browser.close();
   res.status(200).json({ html });
 }
