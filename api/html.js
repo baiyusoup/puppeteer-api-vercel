@@ -25,10 +25,8 @@ module.exports = async function handler(req, res) {
         request.continue();
       }
     })
-    await page.goto(url);
-    if (wait) {
-      await page.waitForSelector(wait, { visible: true });
-    }
+    page.goto(url);
+    await page.waitForSelector(wait, { visible: true, timeout: 5000 });
     const html = await page.evaluate(() => {
       const target = document.body.querySelector(wait) || {};
       return target.innerHTML;
