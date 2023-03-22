@@ -18,10 +18,13 @@
   },
   "homepage": "https://github.com/baiyusoup/puppeteer-api-vercel#readme",
   "dependencies": {
-    "chrome-aws-lambda": "10.1.0",
-    "puppeteer-core": "10.1.0"
+    "chrome-aws-lambda": "8.0.2",
+    "puppeteer-core": "8.0.0"
   },
   "engines": {
     "node": "^14"
+  },
+  "devDependencies": {
+    "@vercel/node": "^2.9.13"
   }
 }
