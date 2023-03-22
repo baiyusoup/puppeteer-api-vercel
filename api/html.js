@@ -17,6 +17,7 @@ const disabledMap = new Map(disabledResourceType);
 module.exports = async function handler(req, res) {
   try {
     const { url, pick_selectors, wait_eval } = req.body;
+    console.log("log ==> ", req.body);
     if (!target_url) {
       res.json({ success: false, msg: "无效参数" });
       return;
