@@ -1,0 +1,13 @@
+{
+  "routes": [
+    {
+      "src": "/",
+      "dest": "/api/index.js"
+    },
+    {
+      "src": "/html",
+      "dest": "/api/html.js"
+    }
+  ],
+  "cleanUrls": true
+}
