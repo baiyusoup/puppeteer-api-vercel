@@ -1,13 +1,13 @@
 const puppeteer = require("puppeteer-core");
 const chrome = require("chrome-aws-lambda");
 
-const disabledResourceType = [
-  ["stylesheet", true],
-  ["image", true],
-  ["media", true],
-  ["font", true],
-];
-const disabledMap = new Map(disabledResourceType);
+// const disabledResourceType = [
+//   ["stylesheet", true],
+//   ["image", true],
+//   ["media", true],
+//   ["font", true],
+// ];
+// const disabledMap = new Map(disabledResourceType);
 
 /**
  * @param {import('@vercel/node').VercelRequest} req
@@ -34,21 +34,21 @@ module.exports = async function handler(req, res) {
     );
     const page = await browser.newPage();
 
-    await page.setRequestInterception(true);
-    page.on("request", (req) => {
-      const isHandled =
-        typeof req.isInterceptResolutionHandled === "function"
-          ? req.isInterceptResolutionHandled()
-          : req._interceptionHandled;
-      if (isHandled) {
-        return;
-      }
-      if (disabledMap.has(req.resourceType())) {
-        req.abort();
-      } else {
-        req.continue();
-      }
-    });
+    // await page.setRequestInterception(true);
+    // page.on("request", (req) => {
+    //   const isHandled =
+    //     typeof req.isInterceptResolutionHandled === "function"
+    //       ? req.isInterceptResolutionHandled()
+    //       : req._interceptionHandled;
+    //   if (isHandled) {
+    //     return;
+    //   }
+    //   if (disabledMap.has(req.resourceType())) {
+    //     req.abort();
+    //   } else {
+    //     req.continue();
+    //   }
+    // });
 
     await page.goto(target_url);
     if (wait_eval) {
